@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import RootDrawer from './routes/RootDrawer';
 
 export default function App() {
+  const [loaded] = useFonts({
+    UbuntuRegular: require('./assets/fonts/Ubuntu-Regular.ttf'),
+    UbuntuBold: require('./assets/fonts/Ubuntu-Bold.ttf')
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <RootDrawer />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
